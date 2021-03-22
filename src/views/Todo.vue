@@ -1,8 +1,40 @@
 <template>
   <div class="home pa-6">
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In facilis expedita, dignissimos consequuntur temporibus, ipsa ducimus ipsam iste dolorem, debitis obcaecati officia saepe minus sint? Officiis ducimus quos enim maxime accusantium impedit repellendus dolorum magni, error corrupti inventore quo cumque nostrum quis voluptate aliquid ex in facere ipsam, ut commodi esse amet delectus illum? Inventore cumque ad incidunt ea totam!</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In facilis expedita, dignissimos consequuntur temporibus, ipsa ducimus ipsam iste dolorem, debitis obcaecati officia saepe minus sint? Officiis ducimus quos enim maxime accusantium impedit repellendus dolorum magni, error corrupti inventore quo cumque nostrum quis voluptate aliquid ex in facere ipsam, ut commodi esse amet delectus illum? Inventore cumque ad incidunt ea totam!</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In facilis expedita, dignissimos consequuntur temporibus, ipsa ducimus ipsam iste dolorem, debitis obcaecati officia saepe minus sint? Officiis ducimus quos enim maxime accusantium impedit repellendus dolorum magni, error corrupti inventore quo cumque nostrum quis voluptate aliquid ex in facere ipsam, ut commodi esse amet delectus illum? Inventore cumque ad incidunt ea totam!</p>
+    <v-list
+      subheader
+      two-line
+      flat
+      class="pt-0"
+    >
+      <div
+        v-for="task in tasks"
+        :key="task.id"
+      >
+        <v-list-item
+          @click="doneTask(task.id)"
+          :class="{'grey lighten-2': task.done}"
+        >
+          <template v-slot:default="{ active, }">
+            <v-list-item-action>
+              <v-checkbox
+                :input-value="task.done"
+                color="primary"
+              ></v-checkbox>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title
+                :class="{'text-decoration-line-through': task.done}"
+              >
+                {{ task.title }}
+              </v-list-item-title>
+              <v-list-item-subtitle>S/ {{ task.price }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </template>
+        </v-list-item>
+        <v-divider></v-divider>
+      </div>
+    </v-list>
   </div>
 </template>
 
@@ -13,6 +45,36 @@ export default {
   name: 'Home',
   components: {
     
-  }
+  },
+  data() {
+    return {
+      tasks: [
+        {
+          id: 1,
+          title: 'Salchipapa',
+          price: 6.5,
+          done: false
+        },
+        {
+          id: 2,
+          title: 'Hamburguesa',
+          price: 5.5,
+          done: true
+        },
+        {
+          id: 3,
+          title: 'Broaster',
+          price: 7.9,
+          done: true
+        }
+      ]
+    }
+  },
+  methods: {
+    doneTask(id) {
+      const task = this.tasks.filter(task => task.id == id)[0];
+      task.done = !task.done;
+    }
+  },
 }
 </script>

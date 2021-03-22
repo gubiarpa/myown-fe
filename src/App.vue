@@ -7,7 +7,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">
-            Application
+            Fast Food App
           </v-list-item-title>
           <v-list-item-subtitle>
             subtext
@@ -52,7 +52,7 @@
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Avengers of the end time</v-app-bar-title>
+      <v-app-bar-title>Fast Food App</v-app-bar-title>
 
       <v-spacer></v-spacer>
 
